@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/heroes/heroes",
+    "pages/lists/lists"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "荣耀锦集",
+    "navigationBarTextStyle": "black"
+  },
+  "debug": true
+}

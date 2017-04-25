@@ -1,0 +1,15 @@
+<!-- heroes.wxml -->
+<scroll-view scroll-y="true" class="list-box">
+    <navigator wx:for="{{lists}}" wx:key="index" class="item-box" url="{{item.videoUrl}}">
+        <view class="img-box">
+            <view class="item-title">{{item.videoTitle}}</view>
+            <image src="{{item.imgUrl}}" mode="aspectFill" class="item-img"></image>
+            <text class="item-time">{{item.videoTime}}</text>
+        </view>
+        <view class="item-other-info">
+            <text class="pageviews-icon">{{item.pageviews}}</text>
+            <text class="commend-icon">{{item.commend}}</text>
+        </view>
+    </navigator>
+    <view class="loding-text">{{loadingText}}</view>
+</scroll-view>

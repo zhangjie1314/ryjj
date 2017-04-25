@@ -1,0 +1,63 @@
+page{
+  background: #eee;
+}
+
+.item-box{
+    margin-bottom: 10px;
+}
+
+.img-box{
+    position: relative;
+}
+
+.img-box .item-title{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    padding: 5px;
+    background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, 0));
+    font-size: .8rem;
+}
+
+.img-box .item-img{
+    width: 100%;
+    display: block;
+}
+
+.img-box .item-time{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
+    font-size: .6rem;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.item-other-info{
+    padding: 5px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    text-align: right;
+}
+
+.item-other-info text{
+    font-size: .6rem;
+    color: #999;
+    padding-left: 15px;
+    margin-right: 5px;
+}
+
+.pageviews-icon{
+    background: url(../../assets/img/icon_eye.png) no-repeat left center;
+    background-size: auto 100%;
+}
+
+.commend-icon{
+    background: url(../../assets/img/icon_heart.png) no-repeat left center;
+    background-size: auto 135%;
+}

@@ -1,0 +1,43 @@
+.detail-box video{
+  width: 100%;
+}
+
+.similar-recommendation-list{
+  padding: 0 10px;
+}
+
+.srl-item{
+  position: relative;
+  padding: 10px 0 0 120px;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.srl-item:first-child{
+  border-top: 1px solid #f3f3f3;
+}
+
+.srl-item image{
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 110px;
+  height: 70px;
+  border-radius: 5px;
+}
+
+.srli-title{
+  font-size: .9rem;
+  color: #444;
+  min-height: 50px;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.srli-info{
+  padding: 10px 0;
+  color: #999;
+  font-size: .6rem;
+}

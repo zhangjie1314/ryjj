@@ -1,0 +1,63 @@
+.all-heroes-box{
+    position: relative;
+    padding-left: 70px;
+}
+
+.left-classify-box{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 70px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+    padding-top: 2px;
+}
+
+.lc-tab-item{
+    padding: 10px 5px;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    color: #666;
+    font-size: .9rem;
+}
+
+.lc-tab-item-on{
+    position: relative;
+    color: #f00;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.lc-tab-item-on:after{
+    content: '';
+    width: 1px;
+    background: #fff;
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+}
+
+.right-result-box{
+    overflow: hidden;
+}
+
+.rr-hero-box{
+    float: left;
+    text-align: center;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.hero-photo{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
+.hero-name{
+    font-size: .8rem;
+    color: #999;
+}

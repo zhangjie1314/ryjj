@@ -1,0 +1,62 @@
+
+<!--index.wxml-->
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 热门推荐 -->
+<view class="title-text">热门推荐</view>
+<scroll-view class="scroll-view_H" scroll-x="true">
+  <navigator class="scroll-view-item_H" url="../detail/detail?id=1" style="background-image: url(../../assets/img/bg_01.jpg);">
+    <view class="scroll-view-item-desc-text">
+      推荐1
+    </view>
+  </navigator>
+  <navigator class="scroll-view-item_H" url="../detail/detail?id=1" style="background-image: url(../../assets/img/bg_02.jpg);">
+    <view class="scroll-view-item-desc-text">
+      推荐2
+    </view>
+  </navigator>
+  <navigator class="scroll-view-item_H" url="../detail/detail?id=1" style="background-image: url(../../assets/img/bg_03.jpg);">
+    <view class="scroll-view-item-desc-text">
+      推荐3
+    </view>
+  </navigator>
+  <navigator class="scroll-view-item_H" url="../detail/detail?id=1" style="background-image: url(../../assets/img/bg_01.jpg);">
+    <view class="scroll-view-item-desc-text">
+      推荐4
+    </view>
+  </navigator>
+  <navigator class="scroll-view-item_H" url="../detail/detail?id=1" style="background-image: url(../../assets/img/bg_02.jpg);">
+    <view class="scroll-view-item-desc-text">
+      推荐5
+    </view>
+  </navigator>
+</scroll-view>
+
+<!-- 分类视频 -->
+<view class="title-text">分类视频</view>
+<scroll-view class="classify-tab-box" scroll-x="true">
+  <navigator class="classify-tab-item" url="../heroes/heroes">全部</navigator>
+  <view class="classify-tab-item {{ tabStr == 'ss' ? 'classify-tab-item-on' : '' }}" data-url="../detail/detail?id=1" data-id="ss" bindtap="tabSwiper">射手</view>
+  <view class="classify-tab-item {{ tabStr == 'fs' ? 'classify-tab-item-on' : '' }}" data-url="../detail/detail?id=1" data-id="fs" bindtap="tabSwiper">法师</view>
+  <view class="classify-tab-item {{ tabStr == 'ck' ? 'classify-tab-item-on' : '' }}" data-url="../detail/detail?id=1" data-id="ck" bindtap="tabSwiper">刺客</view>
+  <view class="classify-tab-item {{ tabStr == 'zs' ? 'classify-tab-item-on' : '' }}" data-url="../detail/detail?id=1" data-id="zs" bindtap="tabSwiper">战士</view>
+  <view class="classify-tab-item {{ tabStr == 'tk' ? 'classify-tab-item-on' : '' }}" data-url="../detail/detail?id=1" data-id="tk" bindtap="tabSwiper">坦克</view>
+  <view class="classify-tab-item {{ tabStr == 'fz' ? 'classify-tab-item-on' : '' }}" data-url="../detail/detail?id=1" data-id="fz" bindtap="tabSwiper">辅助</view>
+</scroll-view>
+
+<view class="classify-content-box" style="display:{{ loading ? 'show' : 'none' }};">
+  <text class="classify-content-loading">努力加载中···</text>
+</view>
+
+<view class="classify-content-box" style="display:{{ loading ? 'none' : 'show' }};">
+  <navigator wx:for="{{listItem}}" wx:key="index" class="classify-content-item-box" url="{{item.jUrl}}">
+    <image src="{{item.imgUrl}}" mode="aspectFill" class="classify-content-item-image" style="width:100%;"></image>
+    <text class="classify-content-item-text">{{item.title}}</text>
+  </navigator>
+</view>
