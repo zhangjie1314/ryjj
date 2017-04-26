@@ -1,16 +1,20 @@
+
 <!--logs.wxml-->
 <view class="detail-box">
-  <video src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video>
-
+  <video src="{{videoUrl}}"></video>
   <view class="title-text">
     同类推荐
   </view>
-
   <view class="similar-recommendation-list">
-    <view class="srl-item" wx:for="{{recommendationData}}" wx:key="index">
-        <image src="{{item.videoImg}}" mode="aspectFill"></image>
-        <view class="srli-title">{{item.videoTitle}}</view>
-        <view class="srli-info">{{item.videoPlayNumber}}次播放</view>
-    </view>
+    <block wx:if="{{recommendationData.length == 0}}">
+      <text class="loding-text">暂无推荐视频！</text>
+    </block>
+    <block wx:else>
+      <navigator url="../../detail/detail?id={{item.unique_id}}&hid={{item.hero_id}}" class="srl-item" wx:for="{{recommendationData}}" wx:key="index">
+        <image src="{{item.poster}}" mode="aspectFill"></image>
+        <view class="srli-title">{{item.title}}</view>
+        <view class="srli-info">{{item.play_num}}次播放</view>
+      </navigator>
+    </block>
   </view>
 </view>

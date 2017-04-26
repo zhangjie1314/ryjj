@@ -1,53 +1,48 @@
+import Util from '../../utils/util'
+
 Page({
     data: {
-        tabStr: 'ss',
+        tabStr: 1,
         loading: false,
-        heroes: [
-            {
-                photo: '../../assets/img/bg_02.jpg',
-                heroName: '鲁班',
-                url: '../lists/lists'
-            }, {
-                photo: '../../assets/img/bg_01.jpg',
-                heroName: '赵云',
-                url: '../lists/lists'
-            }, {
-                photo: '../../assets/img/bg_03.jpg',
-                heroName: '韩信',
-                url: '../lists/lists'
-            }, {
-                photo: '../../assets/img/bg_02.jpg',
-                heroName: '亚瑟',
-                url: '../lists/lists'
-            }, {
-                photo: '../../assets/img/bg_01.jpg',
-                heroName: '项羽',
-                url: '../lists/lists'
-            }, {
-                photo: '../../assets/img/bg_02.jpg',
-                heroName: '诸葛亮',
-                url: '../lists/lists'
-            }, {
-                photo: '../../assets/img/bg_03.jpg',
-                heroName: '甄姬',
-                url: '../lists/lists'
-            }, {
-                photo: '../../assets/img/bg_02.jpg',
-                heroName: '程咬金',
-                url: '../lists/lists'
-            }, {
-                photo: '../../assets/img/bg_01.jpg',
-                heroName: '曹操',
-                url: '../lists/lists'
-            }, {
-                photo: '../../assets/img/bg_02.jpg',
-                heroName: '芈月',
-                url: '../lists/lists'
-            }
-        ]
+        heroList: [],
+        heroes: []
     },
-    onLoad: () => {
-        console.log(this);
+    onLoad: function () {
+        var _this = this;
+        // 获取英雄分类
+        Util.netGET({
+            url: '/hero/type-list',
+            params: {},
+            success: function (res) {
+                if (res.code == 0) {
+                    _this.setData({
+                        heroList: res.data,
+                        tabStr: res.data[0].id
+                    })
+                }
+            },
+            fail: function (err) {
+                console.log('error', res);
+            }
+        });
+
+        // 获取第一页数据
+        Util.netGET({
+            url: '/hero?by=type_id&type_id=1&per_page=100',
+            params: {},
+            success: function (res) {
+                console.log(res.data);
+                if (res.code == 0) {
+                    // success
+                    _this.setData({
+                        heroes: res.data.rows
+                    });
+                }
+            },
+            fail: function (err) {
+                console.log('error', res);
+            }
+        });
     },
     tabSwiper: function (e) {
         if (this.data.loading) {
@@ -61,52 +56,23 @@ Page({
             title: '加载中'
         });
         var _this = this;
-        setTimeout(function () {
-            wx.hideLoading();
-            _this.setData({
-                loading: false,
-                heroes: [
-                    {
-                        photo: '../../assets/img/bg_02.jpg',
-                        heroName: '鲁班',
-                        url: '../lists/lists'
-                    }, {
-                        photo: '../../assets/img/bg_01.jpg',
-                        heroName: '赵云',
-                        url: '../lists/lists'
-                    }, {
-                        photo: '../../assets/img/bg_03.jpg',
-                        heroName: '韩信',
-                        url: '../lists/lists'
-                    }, {
-                        photo: '../../assets/img/bg_02.jpg',
-                        heroName: '亚瑟',
-                        url: '../lists/lists'
-                    }, {
-                        photo: '../../assets/img/bg_01.jpg',
-                        heroName: '项羽',
-                        url: '../lists/lists'
-                    }, {
-                        photo: '../../assets/img/bg_02.jpg',
-                        heroName: '诸葛亮',
-                        url: '../lists/lists'
-                    }, {
-                        photo: '../../assets/img/bg_03.jpg',
-                        heroName: '甄姬',
-                        url: '../lists/lists'
-                    }, {
-                        photo: '../../assets/img/bg_02.jpg',
-                        heroName: '程咬金',
-                        url: '../lists/lists'
-                    }, {
-                        photo: '../../assets/img/bg_01.jpg',
-                        heroName: '曹操',
-                        url: '../lists/lists'
-                    }
-                ]
-            });
-        }, 2000);
-
-        // util.getListData();
+        // 获取英雄列表
+        Util.netGET({
+            url: `/hero?by=type_id&type_id=${e.currentTarget.dataset.id}&per_page=100`,
+            params: {},
+            success: function (res) {
+                if (res.code == 0) {
+                    // success
+                    wx.hideLoading();
+                    _this.setData({
+                        loading: false,
+                        heroes: res.data.rows
+                    });
+                }
+            },
+            fail: function (err) {
+                console.log('error', res);
+            }
+        });
     }
 });

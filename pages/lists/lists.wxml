@@ -1,15 +1,19 @@
 <!-- heroes.wxml -->
 <scroll-view scroll-y="true" class="list-box">
-    <navigator wx:for="{{lists}}" wx:key="index" class="item-box" url="{{item.videoUrl}}">
-        <view class="img-box">
-            <view class="item-title">{{item.videoTitle}}</view>
-            <image src="{{item.imgUrl}}" mode="aspectFill" class="item-img"></image>
-            <text class="item-time">{{item.videoTime}}</text>
+    <block wx:if="{{lists.length == 0}}">
+        <text class="loding-text">暂无视频！</text>
+    </block>
+    <block wx:else>
+        <navigator wx:for="{{lists}}" wx:key="index" class="item-box" url="../detail/detail?id={{item.unique_id}}&hid={{item.hero_id}}">
+        <view class="img-box" style="background-image:url({{item.poster}});">
+            <view class="item-title">{{item.title}}</view>
+            <text class="item-time">00:56</text>
         </view>
         <view class="item-other-info">
-            <text class="pageviews-icon">{{item.pageviews}}</text>
-            <text class="commend-icon">{{item.commend}}</text>
+            <text class="pageviews-icon">{{item.play_num}}</text>
+            <text class="commend-icon">{{item.raise_num}}</text>
         </view>
     </navigator>
+    </block>
     <view class="loding-text">{{loadingText}}</view>
 </scroll-view>

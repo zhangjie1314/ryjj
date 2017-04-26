@@ -1,3 +1,11 @@
+let API_BASE_URL = 'https://api.wzry.jiangxianli.com/api'
+let requsetHandler = {
+  url: '',
+  params: {},
+  success: function (res) { },
+  fail: function (err) { }
+}
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -16,27 +24,41 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-module.exports = {
-  formatTime: formatTime,
-  getListData() {
-    wx.showLoading({ title: '加载中' });
-    wx.request({
-      url: 'test.php', //仅为示例，并非真实的接口地址
-      data: {
-        x: '',
-        y: ''
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log('success', res.data);
-        wx.hideLoading();
-      },
-      error: function (err) {
-        console.log('error', err);
-        wx.hideLoading();
+function request (method, requsetHandler){
+  var params = requsetHandler.params;
+
+  wx.request({
+    url: API_BASE_URL + requsetHandler.url,
+    data: {},
+    method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+    // header: {}, // 设置请求的 header
+    success: function(res){
+      // success
+      if(res.statusCode == 200){
+        requsetHandler.success(res.data);
+      }else{
+        wx.showToast({title: '请求服务器错误：' + res.status});
       }
-    });
-  }
+    },
+    fail: function(res) {
+      // fail
+      requsetHandler.fail(res);
+    },
+    complete: function(res) {
+      // complete
+    }
+  })
+}
+
+function get(requsetHandler) {
+  request('GET', requsetHandler);
+}
+
+function post(requsetHandler) {
+  request('POST', requsetHandler);
+}
+
+export default {
+  netGET: get,
+  netPOST: post
 }

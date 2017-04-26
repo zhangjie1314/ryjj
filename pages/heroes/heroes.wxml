@@ -2,12 +2,7 @@
 <view class="all-heroes-box">
     <!-- 左边分类选择 -->
     <view class="left-classify-box">
-        <view class="lc-tab-item {{ tabStr == 'ss' ? 'lc-tab-item-on' : '' }}" data-url="../logs/logs" data-id="ss" bindtap="tabSwiper">射手</view>
-        <view class="lc-tab-item {{ tabStr == 'fs' ? 'lc-tab-item-on' : '' }}" data-url="../logs/logs" data-id="fs" bindtap="tabSwiper">法师</view>
-        <view class="lc-tab-item {{ tabStr == 'ck' ? 'lc-tab-item-on' : '' }}" data-url="../logs/logs" data-id="ck" bindtap="tabSwiper">刺客</view>
-        <view class="lc-tab-item {{ tabStr == 'zs' ? 'lc-tab-item-on' : '' }}" data-url="../logs/logs" data-id="zs" bindtap="tabSwiper">战士</view>
-        <view class="lc-tab-item {{ tabStr == 'tk' ? 'lc-tab-item-on' : '' }}" data-url="../logs/logs" data-id="tk" bindtap="tabSwiper">坦克</view>
-        <view class="lc-tab-item {{ tabStr == 'fz' ? 'lc-tab-item-on' : '' }}" data-url="../logs/logs" data-id="fz" bindtap="tabSwiper">辅助</view>
+        <view wx:for="{{heroList}}" wx:key="index" class="lc-tab-item {{ tabStr == item.id ? 'lc-tab-item-on' : '' }}" data-url="../logs/logs" data-id="{{item.id}}" bindtap="tabSwiper">{{item.name}}</view>
     </view>
 
     <!-- 右边筛选结果 -->
@@ -15,9 +10,9 @@
         <text class="loding-text">拼命加载中···</text>
     </view>
     <view class="right-result-box" style="display:{{loading ? 'none' : 'block'}};">
-        <navigator class="rr-hero-box" wx:for="{{heroes}}" wx:key="{{index}}" url="{{item.url}}">
-            <image class="hero-photo" src="{{item.photo}}" mode="aspectFill"></image>
-            <view class="hero-name">{{item.heroName}}</view>
+        <navigator class="rr-hero-box" wx:for="{{heroes}}" wx:key="{{index}}" url="../lists/lists?id={{item.hero_id}}">
+            <image class="hero-photo" src="{{item.image_url}}" mode="aspectFill"></image>
+            <view class="hero-name">{{item.hero_name}}</view>
         </navigator>
     </view>
 </view>
