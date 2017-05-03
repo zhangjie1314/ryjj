@@ -4,11 +4,7 @@ import Util from '../../utils/util'
 Page({
   data: {
     hotElement: [],
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
+    imgUrls: [],
     indicatorDots: true,
     autoplay: true,
     interval: 3000,
@@ -57,13 +53,28 @@ Page({
     });
     // 获取分类视频第一个列表
     Util.netGET({
-      url: '/element?by=type&type_id=1',
+      url: '/element?by=type&type_id=1&per_page=6',
       params: {},
       success: function (res) {
         if (res.code == 0) {
           that.setData({
             listItem: res.data.rows
           })
+        }
+      },
+      fail: function (err) {
+        console.log('error', res);
+      }
+    });
+    // 获取轮播
+    Util.netGET({
+      url: '/theme?by=enabled',
+      params: {},
+      success: function (res) {
+        if (res.code == 0) {
+          that.setData({
+            imgUrls: res.data
+          });
         }
       },
       fail: function (err) {
@@ -82,7 +93,7 @@ Page({
     });
     
     Util.netGET({
-      url: `/element?by=type&type_id=${e.currentTarget.dataset.id}`,
+      url: `/element?by=type&type_id=${e.currentTarget.dataset.id}&per_page=6`,
       params: {},
       success: function (res) {
         if (res.code == 0) {
@@ -96,5 +107,32 @@ Page({
         console.log('error', res);
       }
     });
+  },
+  //存储数据
+  localDataSave: function(e){
+    let listData = e.currentTarget.dataset.list;
+    let dumpUrl = e.currentTarget.dataset.url;
+
+    console.log('存储数据', e);
+
+    wx.setStorage({
+      key: 'listData',
+      data: listData,
+      success: function(res){
+        console.log('success', res);
+        wx.navigateTo({
+          url: dumpUrl,
+          success: function(res){
+            console.log('nav-success', res);
+          },
+          fail: function(res) {
+            console.log('nav-fail', res);
+          }
+        })
+      },
+      fail: function(res) {
+        console.log('fail', res);
+      }
+    })
   }
 })

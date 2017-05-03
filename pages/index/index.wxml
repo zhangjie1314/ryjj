@@ -3,7 +3,14 @@
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{imgUrls}}" wx:key="index">
     <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150" />
+      <block wx:if="{{item.elements.length > 1}}">
+        <image src="{{item.theme_image_url}}" class="slide-image" data-list="{{item.elements}}" data-url="../lists/lists?type=local" bindtap="localDataSave"  mode="aspectFill"/>
+      </block>
+      <block wx:else>
+        <navigator url="../detail/detail?hid={{item.elements[0].hero_id}}&id={{item.elements[0].unique_id}}">
+          <image src="{{item.theme_image_url}}" class="slide-image" mode="aspectFill"/>
+        </navigator>
+      </block>
     </swiper-item>
   </block>
 </swiper>
@@ -31,7 +38,7 @@
   </block>
   <block wx:else>
     <navigator wx:for="{{listItem}}" wx:key="index" class="classify-content-item-box" url="../detail/detail?id={{item.unique_id}}&hid={{item.hero_id}}" style="background-image:url({{item.poster}});">
-        <text class="classify-content-item-text">{{item.title}}</text>
+      <text class="classify-content-item-text">{{item.title}}</text>
     </navigator>
   </block>
 </view>

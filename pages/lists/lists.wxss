@@ -20,7 +20,7 @@ page{
     right: 0;
     color: #fff;
     padding: 5px;
-    background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, 0));
+    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
     font-size: .8rem;
     white-space: normal;
 }
@@ -30,38 +30,54 @@ page{
     display: block;
 }
 
-.img-box .item-time{
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    background: rgba(0, 0, 0, .5);
-    color: #fff;
-    font-size: .6rem;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 5px 10px;
-}
-
 .item-other-info{
+    position: relative;
     padding: 5px;
     background: #fff;
     border-bottom: 1px solid #ccc;
     text-align: right;
 }
 
-.item-other-info text{
-    font-size: .6rem;
+.item-other-info .item-time{
+    position: absolute;
+    top: 3px;
+    left: 5px;
     color: #999;
-    padding-left: 15px;
+    font-size: .8rem;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.item-other-info text{
+    font-size: .8rem;
+    color: #999;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.pageviews-icon,
+.commend-icon{
+    display: inline-block;
     margin-right: 5px;
 }
 
-.pageviews-icon{
-    background: url(../../assets/img/icon_eye.png) no-repeat left center;
-    background-size: auto 100%;
+.pageviews-icon text{
+    vertical-align: middle;
 }
 
-.commend-icon{
-    background: url(../../assets/img/icon_heart.png) no-repeat left center;
-    background-size: auto 135%;
+.pageviews-icon image{
+  display: inline-block;
+  width: .8em;
+  height: .8em;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+.commend-icon image{
+  display: inline-block;
+  width: .6rem;
+  height: .6rem;
+  margin-right: 3px;
+  vertical-align: middle;
 }

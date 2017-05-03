@@ -7,11 +7,17 @@
         <navigator wx:for="{{lists}}" wx:key="index" class="item-box" url="../detail/detail?id={{item.unique_id}}&hid={{item.hero_id}}">
         <view class="img-box" style="background-image:url({{item.poster}});">
             <view class="item-title">{{item.title}}</view>
-            <text class="item-time">00:56</text>
         </view>
         <view class="item-other-info">
-            <text class="pageviews-icon">{{item.play_num}}</text>
-            <text class="commend-icon">{{item.raise_num}}</text>
+            <text class="item-time">{{item.duration}}</text>
+            <view class="pageviews-icon">
+                <image src="../../assets/img/icon_eye.png"></image>
+                <text>{{item.play_num}}</text>
+            </view>
+            <view class="commend-icon">
+                <image src="../../assets/img/icon_heart.png"></image>
+                <text>{{item.raise_num}}</text>
+            </view>
         </view>
     </navigator>
     </block>

@@ -1,7 +1,22 @@
 
 <!--logs.wxml-->
 <view class="detail-box">
-  <video src="{{videoUrl}}"></video>
+  <video src="{{videoUrl}}" poster="{{poster}}" bindplay="addPlayNum"></video>
+  <view class="video-info">
+    <view class="pageviews-icon">
+      <image src="../../assets/img/icon_eye.png"></image>
+      <text>{{playNum}}</text>
+    </view>
+    <view class="commend-icon {{isRaiseNum ? 'add' : ''}}" bindtap="raiseNumFun">
+      <block wx:if="{{isRaiseNum}}">
+        <image src="../../assets/img/icon_heart_on.png"></image>
+      </block>
+      <block wx:else>
+        <image src="../../assets/img/icon_heart.png"></image>
+      </block>
+      <text>{{raiseNum}}</text>
+    </view>
+  </view>
   <view class="title-text">
     同类推荐
   </view>
@@ -10,7 +25,7 @@
       <text class="loding-text">暂无推荐视频！</text>
     </block>
     <block wx:else>
-      <navigator url="../../detail/detail?id={{item.unique_id}}&hid={{item.hero_id}}" class="srl-item" wx:for="{{recommendationData}}" wx:key="index">
+      <navigator url="../detail/detail?id={{item.unique_id}}&hid={{item.hero_id}}" class="srl-item" wx:for="{{recommendationData}}" wx:key="index">
         <image src="{{item.poster}}" mode="aspectFill"></image>
         <view class="srli-title">{{item.title}}</view>
         <view class="srli-info">{{item.play_num}}次播放</view>
