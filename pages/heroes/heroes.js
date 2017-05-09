@@ -58,9 +58,9 @@ Page({
             loading: true,
             tabStr: e.currentTarget.dataset.id,
         });
-        wx.showLoading({
-            title: '加载中'
-        });
+        // wx.showLoading({
+        //     title: '加载中'
+        // });
         var _this = this;
         // 获取英雄列表
         Util.netGET({
