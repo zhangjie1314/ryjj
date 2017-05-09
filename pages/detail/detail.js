@@ -5,11 +5,21 @@ Page({
     playNum: 0,
     raiseNum: 0,
     vid:'',
+    hid:'',
     recommendationData: [],
     videoUrl: '',
     poster: '',
     isAddPlayNum: false,
-    isRaiseNum: false
+    isRaiseNum: false,
+    title: ''
+  },
+  onShareAppMessage: function () {
+    console.log('pages/detail/detail?hid=' + this.data.hid + '&id=' + this.data.vid);
+    return {
+      title: this.data.title,
+      path: 'pages/detail/detail?hid=' + this.data.hid + '&id=' + this.data.vid,
+      desc: '为广大游戏爱好者提供高质量、高水平的王者荣耀实战教学视频。'
+    }
   },
   onLoad: function (option) {
     let _this = this;
@@ -25,7 +35,9 @@ Page({
             raiseNum: res.data.raise_num,
             videoUrl: res.data.url,
             poster: res.data.poster,
-            vid: option.id
+            vid: option.id,
+            hid: option.hid,
+            title: res.data.title
           });
           wx.setNavigationBarTitle({
             title: res.data.title

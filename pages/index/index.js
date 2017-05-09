@@ -15,7 +15,15 @@ Page({
     title: '',
     heroList: [],
     listItem: [],
-    loading: false
+    loading: false,
+    shareDesc: '为广大游戏爱好者提供高质量、高水平的王者荣耀实战教学视频。'
+  },
+  onShareAppMessage: function () {
+    return {
+      title: this.data.title,
+      path: '/pages/index/index',
+      desc: this.data.shareDesc
+    }
   },
   onLoad: function () {
     var that = this

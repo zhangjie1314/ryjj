@@ -7,6 +7,13 @@ Page({
         heroList: [],
         heroes: []
     },
+    onShareAppMessage: function () {
+      return {
+        title: '荣耀锦集',
+        path: '/pages/heroes/heroes',
+        desc: '为广大游戏爱好者提供高质量、高水平的王者荣耀实战教学视频。'
+      }
+    },
     onLoad: function () {
         var _this = this;
         // 获取英雄分类
@@ -31,7 +38,6 @@ Page({
             url: '/hero?by=type_id&type_id=1&per_page=100',
             params: {},
             success: function (res) {
-                console.log(res.data);
                 if (res.code == 0) {
                     // success
                     _this.setData({

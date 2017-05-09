@@ -8,7 +8,15 @@ Page({
         loadingText: '',
         curPage: 1,
         heroId: 1,
-        isAllVideo: false
+        isAllVideo: false,
+        dType: ''
+    },
+    onShareAppMessage: function () {
+      return {
+        title: '荣耀锦集',
+        path: 'pages/lists/lists?id=' + this.data.heroId + (this.data.dType != '' ? '&type=' + this.data.dType : ''),
+        desc: '为广大游戏爱好者提供高质量、高水平的王者荣耀实战教学视频。'
+      }
     },
     onLoad: function (option) {
         let _this = this;
