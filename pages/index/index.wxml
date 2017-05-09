@@ -18,7 +18,8 @@
 <!-- 热门推荐 -->
 <view class="title-text">热门推荐</view>
 <scroll-view class="scroll-view_H" scroll-x="true">
-  <navigator wx:for="{{hotElement}}" wx:key="index" class="scroll-view-item_H" url="../detail/detail?id={{item.unique_id}}&hid={{item.hero_id}}" style="background-image: url({{item.poster}});">
+  <navigator wx:for="{{hotElement}}" wx:key="index" class="scroll-view-item_H" url="../detail/detail?id={{item.unique_id}}&hid={{item.hero_id}}" >
+    <image src="{{item.poster}}"></image>
     <text class="scroll-view-item-desc-text">{{item.title}}</text>
   </navigator>
 </scroll-view>
